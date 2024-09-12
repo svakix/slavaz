@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Генерация Картинок</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        canvas {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas" width="800" height="600"></canvas>
+    <script>
+        function getRandomColor() {
+            return `rgb(${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)})`;
+        }
+
+        function drawRandomCircles(ctx, numCircles) {
+            ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+            for (let i = 0; i < numCircles; i++) {
+                ctx.beginPath();
+                ctx.arc(Math.random() * ctx.canvas.width, Math.random() * ctx.canvas.height, Math.random() * 50, 0, 2 * Math.PI);
+                ctx.fillStyle = getRandomColor();
+                ctx.fill();
+            }
+        }
+
+        window.onload = () => {
+            const canvas = document.getElementById('myCanvas');
+            const ctx = canvas.getContext('2d');
+            drawRandomCircles(ctx, 50);
+        };
+    </script>
+</body>
+</html>
